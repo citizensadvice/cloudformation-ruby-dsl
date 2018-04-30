@@ -7,6 +7,8 @@ dsl = TemplateDSL.new({region: 'eu-west-1'}, [ extension ])
 dsl.template do
   @stack_name = 'hello-bucket-example'
 
+  value AWSTemplateFormatVersion: "2010-09-09"
+
   parameter 'Label',
             :Description => 'The label to apply to the bucket.',
             :Type => 'String',
@@ -21,4 +23,6 @@ dsl.template do
 
   sns_topic "BucketUpdates"
 
-end
+end.excise_parameter_attributes!([:Immutable, :UsePreviousValue])
+
+dsl
