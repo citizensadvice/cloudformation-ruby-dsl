@@ -166,7 +166,7 @@ end
 class RspecHelpers
   class << self
     def cloudformation
-      @_cloudformation_ ||= ::Aws::CloudFormation::Client.new
+      @_cloudformation_ ||= ::Aws::CloudFormation::Client.new(region: region, profile: profile)
     end
   end
 end
