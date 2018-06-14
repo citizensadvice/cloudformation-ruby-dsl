@@ -286,7 +286,13 @@ def join(delim, *list)
 end
 
 # Variant of join that matches the native CFN syntax.
-def join_list(delim, list) { :'Fn::Join' => [ delim, list ] } end
+def join_list(delim, list)
+  if list.length == 1
+    { :'Fn::Join' => [ delim, list[0] ] }
+  else
+    { :'Fn::Join' => [ delim, list ] }
+  end
+end
 
 def equal(one, two) { :'Fn::Equals' => [one, two] } end
 
