@@ -1,9 +1,17 @@
 #!/usr/bin/env ruby
 require 'bundler/setup'
-require 'cloudformation-ruby-dsl/dsl'
+require 'cloudformation-ruby-dsl/cfntemplate'
+
 
 extension = File.join(__dir__, "simple_template_extension.rb")
+
 dsl = TemplateDSL.new({region: 'eu-west-1'}, [ extension ])
+# equivalent to:
+# 
+# dsl = TemplateDSL.new({region: 'eu-west-1'})
+# dsl.load_from_file(extension)
+
+
 dsl.template do
   @stack_name = 'hello-bucket-example'
 
@@ -25,4 +33,4 @@ dsl.template do
 
 end.excise_parameter_attributes!([:Immutable, :UsePreviousValue])
 
-dsl
+dsl.exec!
