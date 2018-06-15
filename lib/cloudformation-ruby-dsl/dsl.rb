@@ -52,7 +52,7 @@ def default_region
   ENV['EC2_REGION'] || ENV['AWS_DEFAULT_REGION'] || 'us-east-1'
 end
 
-class Parameter < String
+class TemplateParameter < String
   attr_accessor :default, :use_previous_value
 
   def initialize string
@@ -89,9 +89,9 @@ class TemplateDSL < JsonObjectDSL
     default(:Parameters, {})[name] = options
 
     if @interactive
-      @parameters[name] ||= Parameter.new(_get_parameter_from_cli(name, options))
+      @parameters[name] ||= TemplateParameter.new(_get_parameter_from_cli(name, options))
     else
-      @parameters[name] ||= Parameter.new('')
+      @parameters[name] ||= TemplateParameter.new('')
     end
 
     # set various param options
