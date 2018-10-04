@@ -52,7 +52,7 @@ def default_region
   ENV['EC2_REGION'] || ENV['AWS_DEFAULT_REGION'] || 'us-east-1'
 end
 
-class Parameter < String
+class TemplateParameter < String
   attr_accessor :default, :use_previous_value
 
   def initialize string
@@ -89,9 +89,9 @@ class TemplateDSL < JsonObjectDSL
     default(:Parameters, {})[name] = options
 
     if @interactive
-      @parameters[name] ||= Parameter.new(_get_parameter_from_cli(name, options))
+      @parameters[name] ||= TemplateParameter.new(_get_parameter_from_cli(name, options))
     else
-      @parameters[name] ||= Parameter.new('')
+      @parameters[name] ||= TemplateParameter.new('')
     end
 
     # set various param options
@@ -286,7 +286,13 @@ def join(delim, *list)
 end
 
 # Variant of join that matches the native CFN syntax.
-def join_list(delim, list) { :'Fn::Join' => [ delim, list ] } end
+def join_list(delim, list)
+  if list.length == 1
+    { :'Fn::Join' => [ delim, list[0] ] }
+  else
+    { :'Fn::Join' => [ delim, list ] }
+  end
+end
 
 def equal(one, two) { :'Fn::Equals' => [one, two] } end
 
