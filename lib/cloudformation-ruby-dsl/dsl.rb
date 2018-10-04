@@ -19,11 +19,10 @@ end
 ############################# Generic DSL
 
 class JsonObjectDSL
-  def initialize(&block)
+  def initialize()
     @dict = {}
-    instance_eval &block
   end
-
+  
   def value(values)
     @dict.update(values)
   end
@@ -45,7 +44,7 @@ end
 
 # Main entry point
 def raw_template(options = {}, &block)
-  TemplateDSL.new(options, &block)
+  TemplateDSL.new(options, extensions = []).template(&block)
 end
 
 def default_region
@@ -70,7 +69,7 @@ class TemplateDSL < JsonObjectDSL
               :aws_profile,
               :s3_bucket
 
-  def initialize(options)
+  def initialize(options, extensions = [])
     @parameters  = options.fetch(:parameters, {})
     @interactive = options.fetch(:interactive, false)
     @stack_name  = options[:stack_name]
@@ -79,11 +78,17 @@ class TemplateDSL < JsonObjectDSL
     @nopretty    = options.fetch(:nopretty, false)
     @s3_bucket   = options.fetch(:s3_bucket, nil)
     super()
+    load_extensions(extensions)
   end
 
   def exec!()
     cfn(self)
   end
+
+  def template(&block)
+    instance_eval &block if block_given?
+    self
+  end 
 
   def parameter(name, options)
     default(:Parameters, {})[name] = options
@@ -122,6 +127,10 @@ class TemplateDSL < JsonObjectDSL
     end
   end
 
+  def load_extensions(extensions = [])
+    extensions.each { |e| load_from_file(e) }
+  end
+  
   def load_from_file(filename)
     file = File.open(filename)
 
