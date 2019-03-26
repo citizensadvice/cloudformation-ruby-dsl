@@ -1,8 +1,6 @@
 # frozen_string_literal: true
-
 require 'rspec/expectations'
 require 'json'
-require 'aws-sdk'
 require 'cfn-model'
 
 RSpec::Matchers.define :have_default_parameter_value do |parameter, param_val|
