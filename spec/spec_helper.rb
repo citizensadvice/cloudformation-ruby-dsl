@@ -2,7 +2,8 @@ require 'rspec'
 require 'fileutils'
 require 'json'
 require 'open3'
-require 'aws-sdk'
+require 'aws-sdk-cloudformation'
+require 'aws-sdk-s3'
 require 'cloudformation-ruby-dsl/dsl'
 ##
 # Error encapsulating information about a failed command
