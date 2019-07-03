@@ -64,14 +64,14 @@ class TemplateDSL < JsonObjectDSL
               :stack_name,
               :s3_bucket
 
-  def initialize(options, extensions = [])
+  def initialize(options, *extensions)
     @parameters  = options.fetch(:parameters, {})
     @interactive = options.fetch(:interactive, false)
     @stack_name  = options[:stack_name]
     @nopretty    = options.fetch(:nopretty, false)
     @s3_bucket   = options.fetch(:s3_bucket, nil)
     super()
-    load_extensions(extensions)
+    load_extensions(*extensions)
   end
 
   def exec!()
@@ -120,7 +120,7 @@ class TemplateDSL < JsonObjectDSL
     end
   end
 
-  def load_extensions(extensions = [])
+  def load_extensions(*extensions)
     extensions.each { |e| load_from_file(e) }
   end
   
