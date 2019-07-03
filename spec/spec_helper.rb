@@ -144,22 +144,10 @@ module AwsHelpers
     end
   end
 
-  def profile
-    ENV["AWS_PROFILE"] || "default"
-  end
-
-  def region
-    ENV["AWS_REGION"] || "us-east-1"
-  end
-
   private
 
   def validation_command(template_path)
-    return <<-EOF
-      aws cloudformation validate-template --template-body file://#{template_path} \
-                                           --region #{region} \
-                                           --profile #{profile}
-    EOF
+    "aws cloudformation validate-template --template-body file://#{template_path}"
   end
 end
 
@@ -167,7 +155,7 @@ end
 class RspecHelpers
   class << self
     def cloudformation
-      @_cloudformation_ ||= ::Aws::CloudFormation::Client.new(region: region, profile: profile)
+      @_cloudformation_ ||= ::Aws::CloudFormation::Client.new
     end
   end
 end

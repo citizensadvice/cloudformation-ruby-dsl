@@ -58,9 +58,7 @@ Make the resulting file executable (`chmod +x [NEW_NAME.rb]`). It can respond to
 - `get-template`: get entire template output of an existing stack
 
 Command line options similar to cloudformation commands, but parsed by the dsl.
-- `--profile`
 - `--stack-name`
-- `--region`
 - `--parameters`
 - `--tag`
 
@@ -122,10 +120,6 @@ Additional capabilities for file inclusion, etc.
 - `load_from_file(filename)`: load the named file by a given type; currently handles YAML, JSON, and Ruby
 - `interpolate(string)`: embed CFN references into a string (`{{ref('Service')}}`) for later interpretation by the CFN engine
 - `Table.load(filename)`: load a table from the listed file, which can then be turned into mappings (via `get_map`)
-
-### Default Region
-
-The tool defaults to region `us-east-1`. To change this set either `EC2_REGION` or `AWS_DEFAULT_REGION` in your environment.
 
 ## Usage as a library
 
