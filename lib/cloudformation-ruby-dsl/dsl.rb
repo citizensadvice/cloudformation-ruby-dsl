@@ -370,20 +370,11 @@ def join_interpolate(delim, string)
   interpolate(string)
 end
 
-# This class is used by erb templates so they can access the parameters passed
-class Namespace
-  attr_accessor :params
-  def initialize(hash)
-    @params = hash
-  end
-  def get_binding
-    binding
-  end
-end
-
 # Combines the provided ERB template with optional parameters
 def erb_template(filename, params = {})
-  ERB.new(file(filename), nil, '-').result(Namespace.new(params).get_binding)
+  erb = ERB.new(file(filename), nil, '-')
+  erb.filename = filename
+  erb.result_with_hash(params: params)
 end
 
 def warn_deprecated(old, new)
