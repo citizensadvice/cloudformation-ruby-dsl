@@ -44,11 +44,7 @@ end
 
 # Main entry point
 def raw_template(options = {}, &block)
-  TemplateDSL.new(options, extensions = []).template(&block)
-end
-
-def default_region
-  ENV['EC2_REGION'] || ENV['AWS_DEFAULT_REGION'] || 'us-east-1'
+  TemplateDSL.new(options).template(&block)
 end
 
 class TemplateParameter < String
@@ -61,24 +57,21 @@ end
 
 # Core interpreter for the DSL
 class TemplateDSL < JsonObjectDSL
+
   attr_reader :parameters,
               :parameter_cli,
-              :aws_region,
               :nopretty,
               :stack_name,
-              :aws_profile,
               :s3_bucket
 
-  def initialize(options, extensions = [])
+  def initialize(options, *extensions)
     @parameters  = options.fetch(:parameters, {})
     @interactive = options.fetch(:interactive, false)
     @stack_name  = options[:stack_name]
-    @aws_region  = options.fetch(:region, default_region)
-    @aws_profile = options[:profile]
     @nopretty    = options.fetch(:nopretty, false)
     @s3_bucket   = options.fetch(:s3_bucket, nil)
     super()
-    load_extensions(extensions)
+    load_extensions(*extensions)
   end
 
   def exec!()
@@ -127,7 +120,7 @@ class TemplateDSL < JsonObjectDSL
     end
   end
 
-  def load_extensions(extensions = [])
+  def load_extensions(*extensions)
     extensions.each { |e| load_from_file(e) }
   end
   
@@ -278,6 +271,9 @@ def get_azs(region = '') { :'Fn::GetAZs' => region } end
 
 def import_value(value) { :'Fn::ImportValue' => value } end
 
+def aws_region
+  ref("AWS::Region")
+end
 # There are two valid forms of Fn::Sub, with a map and without.
 def sub(sub_string, var_map = {})
   if var_map.empty?
@@ -374,20 +370,11 @@ def join_interpolate(delim, string)
   interpolate(string)
 end
 
-# This class is used by erb templates so they can access the parameters passed
-class Namespace
-  attr_accessor :params
-  def initialize(hash)
-    @params = hash
-  end
-  def get_binding
-    binding
-  end
-end
-
 # Combines the provided ERB template with optional parameters
 def erb_template(filename, params = {})
-  ERB.new(file(filename), nil, '-').result(Namespace.new(params).get_binding)
+  erb = ERB.new(file(filename), nil, '-')
+  erb.filename = filename
+  erb.result_with_hash(params: params)
 end
 
 def warn_deprecated(old, new)

@@ -33,38 +33,20 @@ require 'highline/import'
 ############################# AWS SDK Support
 
 class AwsClients
-  attr_accessor :cfn_client_instance
-
-  def initialize(args)
-    Aws.config[:region] = args[:region] if args.key?(:region)
-    # Profile definition was replaced with environment variables
-    if args.key?(:aws_profile) && !(args[:aws_profile].nil? || args[:aws_profile].empty?)
-        ENV['AWS_PROFILE'] = args[:aws_profile]
-        ENV['AWS_ACCESS_KEY'] = nil
-        ENV['AWS_ACCESS_KEY_ID'] = nil
-        ENV['AMAZON_ACCESS_KEY_ID'] = nil
-    end
-    # Following line can be uncommented only when Amazon will provide the stable version of this functionality.
-    # Aws.config[:credentials] = Aws::SharedCredentials.new(profile_name: args[:aws_profile]) unless args[:aws_profile].nil?
-  end
 
   def cfn_client
-    if @cfn_client_instance == nil
+    @cfn_client ||= begin
         # credentials are loaded from the environment; see http://docs.aws.amazon.com/sdkforruby/api/Aws/CloudFormation/Client.html
-        @cfn_client_instance = Aws::CloudFormation::Client.new(
+        Aws::CloudFormation::Client.new(
         # we don't validate parameters because the aws-ruby-sdk gets a number parameter and expects it to be a string and fails the validation
         # see: https://github.com/aws/aws-sdk-ruby/issues/848
         validate_params: false
       )
     end
-    @cfn_client_instance
   end
 
   def s3_client
-    if @s3_client_instance == nil
-      @s3_client_instance = Aws::S3::Client.new()
-    end
-    @s3_client_instance
+    @s3_client_instance ||= Aws::S3::Client.new()
   end
 end
 
@@ -84,14 +66,12 @@ end
 
 ############################# Command-line support
 
-# Parse command-line arguments and return the parameters and region
+# Parse command-line arguments and return the parameters
 def parse_args
   args = {
     :stack_name  => nil,
     :parameters  => {},
     :interactive => false,
-    :region      => default_region,
-    :profile     => nil,
     :nopretty    => false,
     :s3_bucket   => nil,
   }
@@ -103,10 +83,6 @@ def parse_args
       args[:parameters] = Hash[value.split(/;/).map { |pair| parts = pair.split(/=/, 2); [ parts[0], TemplateParameter.new(parts[1]) ] }]
     when '--interactive'
       args[:interactive] = true
-    when '--region'
-      args[:region] = value
-    when '--profile'
-      args[:profile] = value
     when '--nopretty'
       args[:nopretty] = true
     when '--s3-bucket'
@@ -162,7 +138,7 @@ def validate_action(action)
 end
 
 def cfn(template)
-  aws_clients = AwsClients.new({:region => template.aws_region, :aws_profile => template.aws_profile})
+  aws_clients = AwsClients.new
   cfn_client = aws_clients.cfn_client
   s3_client = aws_clients.s3_client
 
@@ -185,7 +161,7 @@ def cfn(template)
   template_string = generate_template(template)
 
   # Derive stack name from ARGV
-  _, options = extract_options(ARGV[1..-1], %w(--nopretty), %w(--profile --stack-name --region --parameters --tag --s3-bucket))
+  _, options = extract_options(ARGV[1..-1], %w(--nopretty), %w(--stack-name --parameters --tag --s3-bucket))
   # If the first argument is not an option and stack_name is undefined, assume it's the stack name
   # The second argument, if present, is the resource name used by the describe-resource command
   if template.stack_name.nil?
@@ -230,7 +206,7 @@ Make the resulting file executable (`chmod +x [NEW_NAME.rb]`). It can respond to
 - `get-template`: get entire template output of an existing stack
 
 Command line options similar to cloudformation commands, but parsed by the dsl.
- --profile --stack-name --region --parameters --tag --s3-bucket
+ --stack-name --parameters --tag --s3-bucket
 
 Any other parameters are passed directly onto cloudformation. (--disable-rollback for instance)
 
@@ -244,11 +220,11 @@ template.rb create --stack-name my_stack --parameters "BucketName=bucket-s3-stat
 
   when 'expand'
     # Write the pretty-printed JSON template to stdout and exit.  [--nopretty] option writes output with minimal whitespace
-    # example: <template.rb> expand --parameters "Env=prod" --region eu-west-1 --nopretty
+    # example: <template.rb> expand --parameters "Env=prod" --nopretty
     template_string
 
   when 'diff'
-    # example: <template.rb> diff my-stack-name --parameters "Env=prod" --region eu-west-1
+    # example: <template.rb> diff my-stack-name --parameters "Env=prod"
     # Diff the current template for an existing stack with the expansion of this template.
 
     # `diff` operation exit codes are:

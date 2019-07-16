@@ -5,10 +5,10 @@ require 'cloudformation-ruby-dsl/cfntemplate'
 
 extension = File.join(__dir__, "simple_template_extension.rb")
 
-dsl = TemplateDSL.new({region: 'eu-west-1'}, [ extension ])
+dsl = TemplateDSL.new({}, extension)
 # equivalent to:
 # 
-# dsl = TemplateDSL.new({region: 'eu-west-1'})
+# dsl = TemplateDSL.new({})
 # dsl.load_from_file(extension)
 
 
