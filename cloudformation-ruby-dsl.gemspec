@@ -32,16 +32,15 @@ Gem::Specification.new do |gem|
   gem.test_files    = gem.files.grep(%r{^(test|spec|features)/})
   gem.require_paths = %w{lib bin}
 
-  gem.add_runtime_dependency    'detabulator'
-  gem.add_runtime_dependency    'json'
-  gem.add_runtime_dependency    'bundler'
-  gem.add_runtime_dependency    'aws-sdk-cloudformation'
-  gem.add_runtime_dependency    'aws-sdk-s3'
-  gem.add_runtime_dependency    'diffy'
-  gem.add_runtime_dependency    'highline'
-  gem.add_runtime_dependency    'rake'
+  gem.add_runtime_dependency    'detabulator', '~> 0.1'
+  gem.add_runtime_dependency    'bundler', '~> 2.0'
+  gem.add_runtime_dependency    'aws-sdk-cloudformation', '~> 1.24'
+  gem.add_runtime_dependency    'aws-sdk-s3', '~> 1.45'
+  gem.add_runtime_dependency    'diffy', '~> 3.3'
+  gem.add_runtime_dependency    'highline', '~> 2.0'
+  gem.add_runtime_dependency    'rake', '~> 12.3'
 
-  gem.add_development_dependency 'cfn-model'
-  gem.add_development_dependency 'rspec'
-  gem.add_development_dependency 'pry'
+  gem.add_development_dependency 'cfn-model', '~> 0.4'
+  gem.add_development_dependency 'rspec', '~> 3.8'
+  gem.add_development_dependency 'pry', '~> 0.12'
 end
