@@ -32,6 +32,8 @@ Gem::Specification.new do |gem|
   gem.test_files    = gem.files.grep(%r{^(test|spec|features)/})
   gem.require_paths = %w{lib bin}
 
+  gem.required_ruby_version = "~> 2.6.5"
+
   gem.add_runtime_dependency    'detabulator', '~> 0.1'
   gem.add_runtime_dependency    'bundler', '~> 2.0'
   gem.add_runtime_dependency    'aws-sdk-cloudformation', '~> 1.24'
