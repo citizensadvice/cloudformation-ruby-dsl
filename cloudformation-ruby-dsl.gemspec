@@ -34,7 +34,7 @@ Gem::Specification.new do |gem|
 
   gem.required_ruby_version = "~> 2.6.5"
 
-  gem.add_runtime_dependency    'detabulator', '~> 0.1'
+  gem.add_runtime_dependency    'detabulator', '>= 0.1', '< 0.2'
   gem.add_runtime_dependency    'bundler', '~> 2.0'
   gem.add_runtime_dependency    'aws-sdk-cloudformation', '~> 1.24'
   gem.add_runtime_dependency    'aws-sdk-s3', '~> 1.45'
@@ -42,7 +42,7 @@ Gem::Specification.new do |gem|
   gem.add_runtime_dependency    'highline', '~> 2.0'
   gem.add_runtime_dependency    'rake', '~> 12.3'
 
-  gem.add_development_dependency 'cfn-model', '~> 0.4'
+  gem.add_development_dependency 'cfn-model', '>= 0.4', '< 0.5'
   gem.add_development_dependency 'rspec', '~> 3.8'
-  gem.add_development_dependency 'pry', '~> 0.12'
+  gem.add_development_dependency 'pry', '>= 0.12', '<0.13'
 end
