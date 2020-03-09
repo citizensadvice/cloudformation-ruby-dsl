@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    cloudformation-ruby-dsl (1.6.0)
+    cloudformation-ruby-dsl (1.6.1)
       aws-sdk-cloudformation (~> 1.24)
       aws-sdk-s3 (~> 1.45)
       bundler (~> 2.0)
@@ -14,7 +14,7 @@ GEM
   remote: https://rubygems.org/
   specs:
     aws-eventstream (1.0.3)
-    aws-partitions (1.278.0)
+    aws-partitions (1.281.0)
     aws-sdk-cloudformation (1.30.0)
       aws-sdk-core (~> 3, >= 3.71.0)
       aws-sigv4 (~> 1.1)
@@ -32,7 +32,7 @@ GEM
       aws-sigv4 (~> 1.1)
     aws-sigv4 (1.1.1)
       aws-eventstream (~> 1.0, >= 1.0.2)
-    cfn-model (0.4.18)
+    cfn-model (0.4.21)
       kwalify (= 0.7.2)
       psych (~> 3)
     coderay (1.1.2)
@@ -72,4 +72,4 @@ DEPENDENCIES
   rspec (~> 3.8)
 
 BUNDLED WITH
-   2.0.2
+   2.1.4
