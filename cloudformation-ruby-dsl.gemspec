@@ -45,4 +45,5 @@ Gem::Specification.new do |gem|
   gem.add_development_dependency 'cfn-model', '>= 0.4', '< 0.5'
   gem.add_development_dependency 'rspec', '~> 3.8'
   gem.add_development_dependency 'pry', '>= 0.12', '<0.13'
+  gem.add_development_dependency 'rubocop', '~> 0.79.0'
 end
