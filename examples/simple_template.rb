@@ -7,7 +7,7 @@ extension = File.join(__dir__, "simple_template_extension.rb")
 
 dsl = TemplateDSL.new({}, extension)
 # equivalent to:
-# 
+#
 # dsl = TemplateDSL.new({})
 # dsl.load_from_file(extension)
 
@@ -31,6 +31,11 @@ dsl.template do
 
   sns_topic "BucketUpdates"
 
-end.excise_parameter_attributes!([:Immutable, :UsePreviousValue])
+end
 
-dsl.exec!
+dsl.excise_parameter_attributes!([:Immutable, :UsePreviousValue])
+
+dsl
+
+# exec! if used as a script.
+# dsl.exec!
