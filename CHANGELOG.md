@@ -1,5 +1,17 @@
 # Changelog
 
+## [v1.6.2](https://github.com/citizensadvice/cloudformation-ruby-dsl/tree/v1.6.2) (2020-04-21)
+
+[Full Changelog](https://github.com/citizensadvice/cloudformation-ruby-dsl/compare/v1.6.1...v1.6.2)
+
+**Merged pull requests:**
+
+- fix/DP-110: cloudformation-ruby-dsl rspec exit code = 2 even if tests succeed [\#13](https://github.com/citizensadvice/cloudformation-ruby-dsl/pull/13) ([zhelyan](https://github.com/zhelyan))
+- DP-64: Add a Jenkins build job [\#12](https://github.com/citizensadvice/cloudformation-ruby-dsl/pull/12) ([zhelyan](https://github.com/zhelyan))
+- DP-102 Added rubocop as development dependency [\#11](https://github.com/citizensadvice/cloudformation-ruby-dsl/pull/11) ([simonwgill](https://github.com/simonwgill))
+
+# Changelog
+
 ## [v1.6.1](https://github.com/citizensadvice/cloudformation-ruby-dsl/tree/v1.6.1) (2020-03-09)
 
 [Full Changelog](https://github.com/citizensadvice/cloudformation-ruby-dsl/compare/v1.6.0...v1.6.1)

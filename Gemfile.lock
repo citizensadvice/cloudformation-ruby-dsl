@@ -9,7 +9,7 @@ GIT
 PATH
   remote: .
   specs:
-    cloudformation-ruby-dsl (1.6.1)
+    cloudformation-ruby-dsl (1.6.2)
       aws-sdk-cloudformation (~> 1.24)
       aws-sdk-s3 (~> 1.45)
       bundler (~> 2.0)
@@ -23,8 +23,8 @@ GEM
   specs:
     ast (2.4.0)
     aws-eventstream (1.1.0)
-    aws-partitions (1.296.0)
-    aws-sdk-cloudformation (1.32.0)
+    aws-partitions (1.299.0)
+    aws-sdk-cloudformation (1.33.0)
       aws-sdk-core (~> 3, >= 3.71.0)
       aws-sigv4 (~> 1.1)
     aws-sdk-core (3.94.0)
@@ -35,11 +35,11 @@ GEM
     aws-sdk-kms (1.30.0)
       aws-sdk-core (~> 3, >= 3.71.0)
       aws-sigv4 (~> 1.1)
-    aws-sdk-s3 (1.61.2)
+    aws-sdk-s3 (1.62.0)
       aws-sdk-core (~> 3, >= 3.83.0)
       aws-sdk-kms (~> 1)
       aws-sigv4 (~> 1.1)
-    aws-sigv4 (1.1.1)
+    aws-sigv4 (1.1.2)
       aws-eventstream (~> 1.0, >= 1.0.2)
     cfn-model (0.4.28)
       kwalify (= 0.7.2)
@@ -55,7 +55,7 @@ GEM
     kwalify (0.7.2)
     method_source (0.9.2)
     parallel (1.19.1)
-    parser (2.7.1.0)
+    parser (2.7.1.1)
       ast (~> 2.4.0)
     pry (0.12.2)
       coderay (~> 1.1.0)
