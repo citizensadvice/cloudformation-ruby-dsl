@@ -5,6 +5,12 @@ require 'open3'
 require 'aws-sdk-cloudformation'
 require 'aws-sdk-s3'
 require 'cloudformation-ruby-dsl/dsl'
+require 'simplecov'
+
+SimpleCov.start do
+  add_filter 'spec'
+end
+
 ##
 # Error encapsulating information about a failed command
 class CommandError < StandardError
@@ -168,4 +174,3 @@ RSpec.configure do |c|
 end
 
 Dir["./spec/support/*.rb", "./spec/matchers/*.rb"].each {|f| require f}
-
