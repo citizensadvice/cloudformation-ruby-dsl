@@ -25,7 +25,11 @@ AUTHORS = [
   "Igor Polishchuk",
   "Nathaniel Eliot",
   "Jona Fenocchi",
-  "Tony Cui"
+  "Tony Cui",
+  "Zhelyan Panchev",
+  "Michele Sorcinelli",
+  "Ruth Wells",
+  "Simon Gill"
 ].freeze
 
 AUTHOR_EMAILS = [
@@ -36,7 +40,11 @@ AUTHOR_EMAILS = [
   "Igor.Polishchuk@bazaarvoice.com",
   "Nathaniel.Eliot@bazaarvoice.com",
   "Jona.Fenocchi@bazaarvoice.com",
-  "Tony.Cui@bazaarvoice.com"
+  "Tony.Cui@bazaarvoice.com",
+  "zhelyan.panchev@citizensadvice.org.uk",
+  "michele.sorcinelli@citizensadvice.org.uk",
+  "ruth.wells@citizensadvice.org.uk",
+  "simon.gill@citizensadvice.org.uk"
 ].freeze
 
 Gem::Specification.new do |gem| # rubocop:disable Metrics/BlockLength
@@ -46,9 +54,20 @@ Gem::Specification.new do |gem| # rubocop:disable Metrics/BlockLength
   gem.email         = AUTHOR_EMAILS
   gem.description   = "Ruby DSL library that provides a wrapper around the CloudFormation."
   gem.summary       = <<~SUMMARY
-    Ruby DSL library that provides a wrapper around the CloudFormation.  Written by [Bazaarvoice](http://www.bazaarvoice.com).
+    Ruby DSL library that provides a wrapper around CloudFormation data structures.  Originally written by [Bazaarvoice](http://www.bazaarvoice.com)
+    and forked by Citizens Advice to meet internal needs.
   SUMMARY
-  gem.homepage      = "http://github.com/bazaarvoice/cloudformation-ruby-dsl"
+  gem.homepage = "http://github.com/citizensadvice/cloudformation-ruby-dsl"
+
+  # Prevent pushing this gem to RubyGems.org. To allow pushes either set the 'allowed_push_host'
+  # to allow pushing to a single host or delete this section to allow pushing to any host.
+  raise "RubyGems 2.0 or newer is required to protect against public gem pushes." unless gem.respond_to?(:metadata)
+
+  gem.metadata["allowed_push_host"] = "https://nexus.devops.citizensadvice.org.uk/repository/citizensadvice/"
+
+  gem.metadata["homepage_uri"] = gem.homepage
+  gem.metadata["source_code_uri"] = "https://github.com/citizensadvice/cloudformation-ruby-dsl"
+  gem.metadata["changelog_uri"] = "https://github.com/citizensadvice/cloudformation-ruby-dsl/CHANGELOG.md"
 
   gem.files         = `git ls-files`.split($INPUT_RECORD_SEPARATOR)
   gem.executables   = gem.files.grep(%r{^bin/}).map { |f| File.basename(f) }
