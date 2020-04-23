@@ -13,7 +13,7 @@ PATH
       aws-sdk-cloudformation (~> 1.24)
       aws-sdk-s3 (~> 1.45)
       bundler (~> 2.0)
-      detabulator (>= 0.1, < 0.2)
+      detabulator (~> 0.1.0)
       diffy (~> 3.3)
       highline (~> 2.0)
       rake (~> 12.3)
@@ -97,13 +97,13 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  cfn-model (>= 0.4, < 0.5)
+  cfn-model (~> 0.4.0)
   citizens-advice-style!
   cloudformation-ruby-dsl!
-  pry (>= 0.12, < 0.13)
+  pry (~> 0.12.0)
   rspec (~> 3.8)
-  simplecov (~> 0.18)
-  yard (~> 0.9)
+  simplecov (~> 0.18.0)
+  yard (~> 0.9.0)
 
 BUNDLED WITH
    2.1.4
