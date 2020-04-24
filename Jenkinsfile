@@ -62,7 +62,7 @@ node('docker && awsaccess') {
       def version = sh(script: getVersionScript, returnStdout: true).trim()
       def buildTime = now.format("yyyyddHHmmss", TimeZone.getTimeZone('UTC'))
       def packageFileName = "cloudformation-ruby-dsl-${version}+${buildTime}.gem"
-      echo("echo gem build cloudformation-ruby-dsl --output=${packageFileName}")
+      sh("echo gem build cloudformation-ruby-dsl --output=${packageFileName}")
 
       def secrets = [
           [$class: 'VaultSecret', path: 'secret/devops/sonatype_nexus', secretValues: [
@@ -71,8 +71,7 @@ node('docker && awsaccess') {
       ]
 
       wrap([$class: 'VaultBuildWrapper', vaultSecrets: secrets]) {
-        sh("Using nexus user '$NEXUS_USER'")
-        echo("gem nexus --credential \"\$NEXUS_USER:\$NEXUS_PASSWORD\" --nexus-config .nexus.config ${packageFileName}")
+        sh("gem nexus --credential \"\$NEXUS_USER:\$NEXUS_PASSWORD\" --nexus-config .nexus.config ${packageFileName}")
       }
     }
   }
