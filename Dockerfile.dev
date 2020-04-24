@@ -43,4 +43,4 @@ USER app
 
 WORKDIR /app
 
-RUN gem install bundler --no-doc && bundle install
+RUN gem install bundler nexus --no-doc && bundle install
