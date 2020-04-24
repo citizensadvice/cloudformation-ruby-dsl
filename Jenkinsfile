@@ -74,5 +74,6 @@ node('docker && awsaccess') {
         sh("Using nexus user '$NEXUS_USER'")
         echo("gem nexus --credential \"\$NEXUS_USER:\$NEXUS_PASSWORD\" --nexus-config .nexus.config ${packageFileName}")
       }
+    }
   }
 }
