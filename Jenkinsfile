@@ -48,9 +48,9 @@ node('docker && awsaccess') {
 
     stage('Push to repository') {
       def now = new Date()
-      def version = sh(script: "rake prerelease_version[${env.BUILD_NUMBER}]", returnStdout: true)
+      def getVersionScript = "rake prerelease_version[${env.BUILD_NUMBER}]"
       if (env.BRANCH_NAME == 'master') {
-        version = sh(script: 'rake current_version', returnStdout: true)
+        getVersionScript = 'rake current_version'
       }
       else if (env.BRANCH_NAME == 'develop') {
         // Covered by default setting. Leaving the branch here as a reminder to figure out the whole flow.
@@ -59,10 +59,11 @@ node('docker && awsaccess') {
         // Do we need to build PRs as artifacts?
         // Should this return a different prerelease track? "alpha", or "pr_${pr_number}" maybe?        
       }
+      def version = sh(script: getVersionScript, returnStdout: true).trim
       def buildTime = now.format("yyyyddHHmmss", TimeZone.getTimeZone('UTC'))
       def packageFileName = "cloudformation-ruby-dsl-${version}+${buildTime}.gem"
       echo("echo gem build cloudformation-ruby-dsl --output=${packageFileName}")
-      echo("gem nexus --credential \"$NEXUS_USER:$NEXUS_PASSWORD\" --nexus-config .nexus.config ${packageFileName}")
+      echo("gem nexus --credential \"\$NEXUS_USER:\$NEXUS_PASSWORD\" --nexus-config .nexus.config ${packageFileName}")
     }
   }
 }
