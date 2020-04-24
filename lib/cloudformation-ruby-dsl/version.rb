@@ -17,7 +17,11 @@
 module Cfn
   module Ruby
     module Dsl
-      VERSION = "1.6.2"
+      MAJOR_VERSION = 1
+      MINOR_VERSION = 6
+      PATCH_VERSION = 2
+
+      VERSION = "#{MAJOR_VERSION}.#{MINOR_VERSION}.#{PATCH_VERSION}"
     end
   end
 end
