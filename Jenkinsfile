@@ -59,7 +59,7 @@ node('docker && awsaccess') {
         // Do we need to build PRs as artifacts?
         // Should this return a different prerelease track? "alpha", or "pr_${pr_number}" maybe?        
       }
-      def version = sh(script: getVersionScript, returnStdout: true).trim
+      def version = sh(script: getVersionScript, returnStdout: true).trim()
       def buildTime = now.format("yyyyddHHmmss", TimeZone.getTimeZone('UTC'))
       def packageFileName = "cloudformation-ruby-dsl-${version}+${buildTime}.gem"
       echo("echo gem build cloudformation-ruby-dsl --output=${packageFileName}")
