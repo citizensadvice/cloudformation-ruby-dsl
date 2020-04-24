@@ -62,7 +62,7 @@ node('docker && awsaccess') {
       def version = sh(script: getVersionScript, returnStdout: true).trim()
       def buildTime = now.format("yyyyddHHmmss", TimeZone.getTimeZone('UTC'))
       def packageFileName = "cloudformation-ruby-dsl-${version}+${buildTime}.gem"
-      sh("echo gem build cloudformation-ruby-dsl --output=${packageFileName}")
+      sh("gem build cloudformation-ruby-dsl --output=${packageFileName}")
 
       def secrets = [
           [$class: 'VaultSecret', path: 'secret/devops/sonatype_nexus', secretValues: [
