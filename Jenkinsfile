@@ -47,7 +47,7 @@ node('docker && awsaccess') {
     }
 
     stage('Push to repository') {
-      withVaultSecrets([NEXUS_USER: 'secret/devops/sonatype_nexus username', NEXUS_PASSWORD: 'secret/devops/sonatype_nexus password']) {
+      withVaultSecrets([NEXUS_USER: 'secret/devops/sonatype_nexus, username', NEXUS_PASSWORD: 'secret/devops/sonatype_nexus, password']) {
         sh ('echo "checking NEXUS_USER is passed through properly. admin should == $NEXUS_USER"')
         if (env.BRANCH_NAME == 'master') {
           sh("rake release")
