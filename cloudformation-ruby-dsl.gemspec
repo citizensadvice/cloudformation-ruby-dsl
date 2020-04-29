@@ -85,7 +85,7 @@ Gem::Specification.new do |gem| # rubocop:disable Metrics/BlockLength
   gem.add_runtime_dependency    "rake", "~> 12.3"
 
   gem.add_development_dependency "cfn-model", "~> 0.4.0"
-  gem.add_development_dependency "gem-release", "~> 2.1"
+  gem.add_development_dependency "nexus", "~> 1.4"
   gem.add_development_dependency "pry", "~> 0.12.0"
   gem.add_development_dependency "rspec", "~> 3.8"
   gem.add_development_dependency "simplecov", "~> 0.18.0"

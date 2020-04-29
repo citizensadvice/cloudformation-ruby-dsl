@@ -47,31 +47,16 @@ node('docker && awsaccess') {
     }
 
     stage('Push to repository') {
-      def now = new Date()
-      def getVersionScript = "rake prerelease_version[${env.BUILD_NUMBER}]"
-      if (env.BRANCH_NAME == 'master') {
-        getVersionScript = 'rake current_version'
-      }
-      else if (env.BRANCH_NAME == 'develop') {
-        // Covered by default setting. Leaving the branch here as a reminder to figure out the whole flow.
-      }
-      else {
-        // Do we need to build PRs as artifacts?
-        // Should this return a different prerelease track? "alpha", or "pr_${pr_number}" maybe?        
-      }
-      def version = sh(script: getVersionScript, returnStdout: true).trim()
-      def buildTime = now.format("yyyyddHHmmss", TimeZone.getTimeZone('UTC'))
-      def packageFileName = "cloudformation-ruby-dsl-${version}+${buildTime}.gem"
-      sh("gem build cloudformation-ruby-dsl --output=${packageFileName}")
-
       def secrets = [
           [$class: 'VaultSecret', path: 'secret/devops/sonatype_nexus', secretValues: [
               [$class: 'VaultSecretValue', envVar: 'NEXUS_USER', vaultKey: 'username'],
               [$class: 'VaultSecretValue', envVar: 'NEXUS_PASSWORD', vaultKey: 'password']]]
       ]
 
-      wrap([$class: 'VaultBuildWrapper', vaultSecrets: secrets]) {
-        sh("gem nexus --credential \"\$NEXUS_USER:\$NEXUS_PASSWORD\" --nexus-config .nexus.config ${packageFileName}")
+      if (env.BRANCH_NAME == 'master') {
+        wrap([$class: 'VaultBuildWrapper', vaultSecrets: secrets]) {
+          sh("rake release")
+        }
       }
     }
   }
