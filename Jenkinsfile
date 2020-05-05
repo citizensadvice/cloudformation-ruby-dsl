@@ -15,8 +15,8 @@ node('docker && awsaccess') {
 
   image.inside {
     stage('Install Requirements') {
-      sh 'git config --global user.name jenkins && ' +
-        'git config --global user.email cab-jenkins@citizensadvice.org.uk'
+      sh 'git config user.name jenkins && ' +
+        'git config user.email cab-jenkins@citizensadvice.org.uk'
     }
     stage('Run linter') {
       // TODO: [DP-108] fix rubocop violations
