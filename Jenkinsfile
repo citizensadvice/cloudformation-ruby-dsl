@@ -6,8 +6,6 @@ node('docker && awsaccess') {
   cleanWorkspace()
   
   stage('Checkout') {
-    sh 'git config --global user.name jenkins && ' +
-      'git config --global user.email cab-jenkins@citizensadvice.org.uk'
     checkout scm
   }
 
@@ -16,6 +14,10 @@ node('docker && awsaccess') {
   }
 
   image.inside {
+    stage('Install Requirements') {
+      sh 'git config --global user.name jenkins && ' +
+        'git config --global user.email cab-jenkins@citizensadvice.org.uk'
+    }
     stage('Run linter') {
       // TODO: [DP-108] fix rubocop violations
       sh 'bundle exec rubocop --fail-level F'
