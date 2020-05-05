@@ -4,8 +4,10 @@ devImageTag = "cfrdsl:dev"
 
 node('docker && awsaccess') {
   cleanWorkspace()
-
+  
   stage('Checkout') {
+    sh 'git config --global user.name jenkins && ' +
+      'git config --global user.email cab-jenkins@citizensadvice.org.uk'
     checkout scm
   }
 
