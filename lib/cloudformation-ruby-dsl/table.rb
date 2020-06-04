@@ -12,11 +12,11 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-require 'detabulator'
+require "detabulator"
 
 class Table
   def self.load(filename)
-    self.new File.read filename
+    new File.read filename
   end
 
   def initialize(table_as_text)
@@ -33,7 +33,7 @@ class Table
 
   # Select the headers as list. Argument(s) will be excluded from output.
   def get_header(*exclude)
-    @header.reject{ |key| key if exclude.include?(key) }
+    @header.reject { |key| key if exclude.include?(key) }
   end
 
   # Selects all rows in the table which match the name/value pairs of the predicate object and returns
@@ -88,7 +88,7 @@ class Table
         hash[record[key]][hash_key] = record[hash_key]
       end
     end
-    return hash
+    hash
   end
 
   def build_nested_map(records, path, multi)
@@ -117,6 +117,7 @@ class Table
     else
       # In a non-multimap the leaf level is a single string value
       raise "Multiple distinct values for the same key '#{key}': #{records.inspect}" if values.length > 1
+
       values[0]
     end
   end

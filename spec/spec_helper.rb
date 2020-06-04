@@ -1,14 +1,14 @@
-require 'rspec'
-require 'fileutils'
-require 'json'
-require 'open3'
-require 'aws-sdk-cloudformation'
-require 'aws-sdk-s3'
-require 'cloudformation-ruby-dsl/dsl'
-require 'simplecov'
+require "rspec"
+require "fileutils"
+require "json"
+require "open3"
+require "aws-sdk-cloudformation"
+require "aws-sdk-s3"
+require "cloudformation-ruby-dsl/dsl"
+require "simplecov"
 
 SimpleCov.start do
-  add_filter 'spec'
+  add_filter "spec"
 end
 
 ##
@@ -32,7 +32,7 @@ module PathHelpers
   # is relative to the project root irregardless of where
   # rspec/ruby is invoked
   def from_project_root(relative_path)
-    source_dir = File.expand_path(File.dirname(__FILE__))
+    source_dir = __dir__
     File.join(source_dir, "..", relative_path)
   end
 end
@@ -47,7 +47,7 @@ module CommandHelpers
   # Logs the command that failed and raises an exception
   # inlcuding status and stderr
   def cmd_failed(command, status, stderr)
-    STDERR.puts("FAILURE executing #{command}")
+    warn("FAILURE executing #{command}")
     raise CommandError.new(command, status, stderr)
   end
 
@@ -68,14 +68,14 @@ module CommandHelpers
   #
   # example call:
   #   exec_cmd("ls", :within => "/")
-  def exec_cmd(cmd, opts={:within => "."})
+  def exec_cmd(cmd, opts = { within: "." })
     exec_dir = from_project_root(opts[:within])
     Dir.chdir(exec_dir) do
       stdout, stderr, status = Open3.capture3(cmd)
       results = stdout.split(" ").unshift(stdout)
 
       cmd_failed(cmd, status, stderr) if status != 0
-      if (block_given?)
+      if block_given?
         yield results
       else
         results
@@ -93,13 +93,11 @@ module JsonHelpers
   # STDERR if parsing fails to make it easier to troubleshoot
   # failures in generated json.
   def jsparse(json_string)
-    begin
-      JSON.parse(json_string)
-    rescue StandardError => e
-      STDERR.puts "Error parsing JSON:"
-      STDERR.puts json_string
-      raise e
-    end
+    JSON.parse(json_string)
+  rescue StandardError => e
+    warn "Error parsing JSON:"
+    warn json_string
+    raise e
   end
 end
 
@@ -141,12 +139,10 @@ module AwsHelpers
     template_path = File.join(from_project_root("spec/tmp"), template_name)
     command = validation_command(template_path)
     exec_cmd(command) do |output|
-      begin
-        JSON.parse(output.first)
-      rescue JSON::ParserError
-        STDERR.puts "ERROR parsing output of: #{command}"
-        raise
-      end
+      JSON.parse(output.first)
+    rescue JSON::ParserError
+      warn "ERROR parsing output of: #{command}"
+      raise
     end
   end
 
@@ -156,7 +152,6 @@ module AwsHelpers
     "aws cloudformation validate-template --template-body file://#{template_path}"
   end
 end
-
 
 class RspecHelpers
   class << self
@@ -173,4 +168,4 @@ RSpec.configure do |c|
   c.include AwsHelpers
 end
 
-Dir["./spec/support/*.rb", "./spec/matchers/*.rb"].each {|f| require f}
+Dir["./spec/support/*.rb", "./spec/matchers/*.rb"].each { |f| require f }

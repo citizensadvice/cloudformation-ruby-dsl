@@ -5,8 +5,8 @@ def params
 end
 
 def sns_topic(name)
-  resource "#{name}Topic", Type: 'AWS::SNS::Topic', Properties: {
-      DisplayName: name,
-      TopicName: name
-    }
+  resource "#{name}Topic", Type: "AWS::SNS::Topic", Properties: {
+    DisplayName: name,
+    TopicName: name
+  }
 end
