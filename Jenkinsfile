@@ -4,7 +4,7 @@ devImageTag = "cfrdsl:dev"
 
 node('docker && awsaccess') {
   cleanWorkspace()
-  
+
   stage('Checkout') {
     checkout scm
   }
@@ -50,12 +50,7 @@ node('docker && awsaccess') {
       ])
     }
 
-    stage('Push to repository') {
-      withVaultSecrets([NEXUS_USER: 'secret/devops/sonatype_nexus, username', NEXUS_PASSWORD: 'secret/devops/sonatype_nexus, password']) {
-        if (env.BRANCH_NAME == 'master') {
-          //sh("rake release")
-        }
-      }
-    }
+    nexusGemRelease()
+
   }
 }
