@@ -1,5 +1,13 @@
 # Changelog
 
+## [v1.6.5](https://github.com/citizensadvice/cloudformation-ruby-dsl/tree/v1.6.5) (2020-07-29)
+
+[Full Changelog](https://github.com/citizensadvice/cloudformation-ruby-dsl/compare/v1.6.4...v1.6.5)
+
+**Merged pull requests:**
+
+- DP-132: push gem releases \[DM\] [\#16](https://github.com/citizensadvice/cloudformation-ruby-dsl/pull/16) ([zhelyan](https://github.com/zhelyan))
+
 ## [v1.6.4](https://github.com/citizensadvice/cloudformation-ruby-dsl/tree/v1.6.4) (2020-06-15)
 
 [Full Changelog](https://github.com/citizensadvice/cloudformation-ruby-dsl/compare/v1.6.3...v1.6.4)
