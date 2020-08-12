@@ -1,5 +1,13 @@
 # Changelog
 
+## [v1.6.6](https://github.com/citizensadvice/cloudformation-ruby-dsl/tree/v1.6.6) (2020-08-12)
+
+[Full Changelog](https://github.com/citizensadvice/cloudformation-ruby-dsl/compare/v1.6.5...v1.6.6)
+
+**Merged pull requests:**
+
+- DP-177: rationalise dependency versions [\#17](https://github.com/citizensadvice/cloudformation-ruby-dsl/pull/17) ([zhelyan](https://github.com/zhelyan))
+
 ## [v1.6.5](https://github.com/citizensadvice/cloudformation-ruby-dsl/tree/v1.6.5) (2020-07-29)
 
 [Full Changelog](https://github.com/citizensadvice/cloudformation-ruby-dsl/compare/v1.6.4...v1.6.5)
