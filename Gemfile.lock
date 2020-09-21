@@ -9,7 +9,7 @@ GIT
 PATH
   remote: .
   specs:
-    cloudformation-ruby-dsl (1.6.7)
+    cloudformation-ruby-dsl (1.6.7.pre)
       aws-sdk-cloudformation (~> 1.24)
       aws-sdk-s3 (~> 1.45)
       bundler (~> 2.0)
