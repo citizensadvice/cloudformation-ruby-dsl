@@ -1,4 +1,4 @@
-FROM ruby:2.6.5-alpine
+FROM ruby:2.7-alpine
 
 ENV GLIBC_VER=2.31-r0
 
