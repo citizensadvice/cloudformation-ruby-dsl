@@ -4,5 +4,5 @@ source "https://rubygems.org"
 gemspec
 
 group :test, :development do
-  gem "citizens-advice-style", github: "citizensadvice/citizens-advice-style-ruby", tag: "v0.2.5"
+  gem "citizens-advice-style", github: "citizensadvice/citizens-advice-style-ruby", tag: "v0.4.0"
 end
