@@ -1,5 +1,13 @@
 # Changelog
 
+## [v1.6.7](https://github.com/citizensadvice/cloudformation-ruby-dsl/tree/v1.6.7) (2020-09-22)
+
+[Full Changelog](https://github.com/citizensadvice/cloudformation-ruby-dsl/compare/v1.6.6...v1.6.7)
+
+**Merged pull requests:**
+
+- DP-194 citizens advice style ruby upgrade [\#18](https://github.com/citizensadvice/cloudformation-ruby-dsl/pull/18) ([simonwgill](https://github.com/simonwgill))
+
 ## [v1.6.6](https://github.com/citizensadvice/cloudformation-ruby-dsl/tree/v1.6.6) (2020-08-12)
 
 [Full Changelog](https://github.com/citizensadvice/cloudformation-ruby-dsl/compare/v1.6.5...v1.6.6)
