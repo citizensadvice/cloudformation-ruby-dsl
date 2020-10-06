@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.6.8](https://github.com/citizensadvice/cloudformation-ruby-dsl/tree/1.6.8) (2020-10-06)
+
+[Full Changelog](https://github.com/citizensadvice/cloudformation-ruby-dsl/compare/v1.6.7...1.6.8)
+
+**Merged pull requests:**
+
+- DP-188: ruby 2.7 [\#19](https://github.com/citizensadvice/cloudformation-ruby-dsl/pull/19) ([zhelyan](https://github.com/zhelyan))
+
 ## [v1.6.7](https://github.com/citizensadvice/cloudformation-ruby-dsl/tree/v1.6.7) (2020-09-22)
 
 [Full Changelog](https://github.com/citizensadvice/cloudformation-ruby-dsl/compare/v1.6.6...v1.6.7)
