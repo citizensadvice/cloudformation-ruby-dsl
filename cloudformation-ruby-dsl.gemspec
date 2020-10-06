@@ -74,7 +74,7 @@ Gem::Specification.new do |gem| # rubocop:disable Metrics/BlockLength
   gem.test_files    = gem.files.grep(%r{^(test|spec|features)/})
   gem.require_paths = %w[lib bin]
 
-  gem.required_ruby_version = "~> 2.6.5"
+  gem.required_ruby_version = "~> 2.7"
 
   gem.add_runtime_dependency    "aws-sdk-cloudformation", "~> 1.24"
   gem.add_runtime_dependency    "aws-sdk-s3", "~> 1.45"
