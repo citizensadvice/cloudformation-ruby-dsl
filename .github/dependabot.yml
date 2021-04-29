@@ -1,0 +1,19 @@
+version: 2
+registries:
+  rubygems-server-nexus-devops-citizensadvice-org-uk-repository-ca:
+    type: rubygems-server
+    url: https://nexus.devops.citizensadvice.org.uk/repository/ca-gems
+    username: "${{secrets.RUBYGEMS_SERVER_NEXUS_DEVOPS_CITIZENSADVICE_ORG_UK_REPOSITORY_CA_USERNAME}}"
+    password: "${{secrets.RUBYGEMS_SERVER_NEXUS_DEVOPS_CITIZENSADVICE_ORG_UK_REPOSITORY_CA_PASSWORD}}"
+
+updates:
+- package-ecosystem: bundler
+  directory: "/"
+  schedule:
+    interval: monthly
+    time: "08:00"
+    timezone: Europe/London
+  open-pull-requests-limit: 10
+  target-branch: develop
+  registries:
+  - rubygems-server-nexus-devops-citizensadvice-org-uk-repository-ca
