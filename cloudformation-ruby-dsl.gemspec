@@ -84,7 +84,7 @@ Gem::Specification.new do |gem| # rubocop:disable Metrics/BlockLength
   gem.add_runtime_dependency    "highline", "~> 2.0"
   gem.add_runtime_dependency    "rake", "~> 12.3"
 
-  gem.add_development_dependency "cfn-model", "~> 0.5.0"
+  gem.add_development_dependency "cfn-model", "~> 0.6.2"
   gem.add_development_dependency "nexus", "~> 1.4"
   gem.add_development_dependency "pry", "~> 0.13.0"
   gem.add_development_dependency "rspec", "~> 3.8"
