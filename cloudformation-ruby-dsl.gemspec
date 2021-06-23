@@ -82,7 +82,7 @@ Gem::Specification.new do |gem| # rubocop:disable Metrics/BlockLength
   gem.add_runtime_dependency    "detabulator", "~> 0.1.0"
   gem.add_runtime_dependency    "diffy", "~> 3.3"
   gem.add_runtime_dependency    "highline", "~> 2.0"
-  gem.add_runtime_dependency    "rake", "~> 12.3"
+  gem.add_runtime_dependency    "rake", ">= 12.3", "< 14.0"
 
   gem.add_development_dependency "cfn-model", "~> 0.5.0"
   gem.add_development_dependency "nexus", "~> 1.4"
