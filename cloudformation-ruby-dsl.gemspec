@@ -88,6 +88,6 @@ Gem::Specification.new do |gem| # rubocop:disable Metrics/BlockLength
   gem.add_development_dependency "nexus", "~> 1.4"
   gem.add_development_dependency "pry", "~> 0.13.0"
   gem.add_development_dependency "rspec", "~> 3.8"
-  gem.add_development_dependency "simplecov", "~> 0.18.0"
+  gem.add_development_dependency "simplecov", "~> 0.21.2"
   gem.add_development_dependency "yard", "~> 0.9.0"
 end
