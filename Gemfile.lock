@@ -16,7 +16,7 @@ PATH
       detabulator (~> 0.1.0)
       diffy (~> 3.3)
       highline (~> 2.0)
-      rake (~> 12.3)
+      rake (>= 12.3, < 14.0)
 
 GEM
   remote: https://rubygems.org/
@@ -62,7 +62,7 @@ GEM
       method_source (~> 1.0)
     psych (3.2.0)
     rainbow (3.0.0)
-    rake (12.3.3)
+    rake (13.0.3)
     regexp_parser (1.8.0)
     rexml (3.2.5)
     rspec (3.9.0)
