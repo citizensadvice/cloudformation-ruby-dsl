@@ -1,10 +1,10 @@
 GIT
   remote: https://github.com/citizensadvice/citizens-advice-style-ruby.git
-  revision: d73af3ef9bf0b03f7d834a009308ce7296b68e81
-  tag: v0.4.0
+  revision: 1f1bb85b4ad28254583a184dddc6b47dfeb5da7b
+  tag: v2.1.0
   specs:
-    citizens-advice-style (0.4.0)
-      rubocop (~> 0.91.0)
+    citizens-advice-style (2.1.0)
+      rubocop (~> 1.11.0)
 
 PATH
   remote: .
@@ -21,7 +21,7 @@ PATH
 GEM
   remote: https://rubygems.org/
   specs:
-    ast (2.4.1)
+    ast (2.4.2)
     aws-eventstream (1.1.1)
     aws-partitions (1.470.0)
     aws-sdk-cloudformation (1.52.0)
@@ -54,8 +54,8 @@ GEM
     kwalify (0.7.2)
     method_source (1.0.0)
     nexus (1.4.0)
-    parallel (1.19.2)
-    parser (2.7.1.4)
+    parallel (1.20.1)
+    parser (3.0.1.1)
       ast (~> 2.4.1)
     pry (0.13.1)
       coderay (~> 1.1)
@@ -63,7 +63,7 @@ GEM
     psych (3.2.0)
     rainbow (3.0.0)
     rake (12.3.3)
-    regexp_parser (1.8.0)
+    regexp_parser (2.1.1)
     rexml (3.2.5)
     rspec (3.9.0)
       rspec-core (~> 3.9.0)
@@ -78,23 +78,23 @@ GEM
       diff-lcs (>= 1.2.0, < 2.0)
       rspec-support (~> 3.9.0)
     rspec-support (3.9.3)
-    rubocop (0.91.0)
+    rubocop (1.11.0)
       parallel (~> 1.10)
-      parser (>= 2.7.1.1)
+      parser (>= 3.0.0.0)
       rainbow (>= 2.2.2, < 4.0)
-      regexp_parser (>= 1.7)
+      regexp_parser (>= 1.8, < 3.0)
       rexml
-      rubocop-ast (>= 0.4.0, < 1.0)
+      rubocop-ast (>= 1.2.0, < 2.0)
       ruby-progressbar (~> 1.7)
-      unicode-display_width (>= 1.4.0, < 2.0)
-    rubocop-ast (0.4.2)
-      parser (>= 2.7.1.4)
-    ruby-progressbar (1.10.1)
+      unicode-display_width (>= 1.4.0, < 3.0)
+    rubocop-ast (1.7.0)
+      parser (>= 3.0.1.1)
+    ruby-progressbar (1.11.0)
     simplecov (0.18.5)
       docile (~> 1.1)
       simplecov-html (~> 0.11)
     simplecov-html (0.12.2)
-    unicode-display_width (1.7.0)
+    unicode-display_width (2.0.0)
     yard (0.9.26)
 
 PLATFORMS
